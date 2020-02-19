@@ -13,9 +13,10 @@
     "hdb": "^0.17.1"
   },
   "scripts": {
+    "setup": "npm install && npm run deploy:sqlite",
     "start": "npx cds run",
-    "startv2": "node srv/express",
-    "deploy:Sqlite": "cds deploy --to sqlite",
+    "startv2": "node v2server",
+    "deploy:sqlite": "cds deploy --to sqlite",
     "build": "cds build/all --clean",
     "build:cf": "mbt build -p=cf",
     "build:xs-security": "cds compile srv/ --to xsuaa  > xs-security.json",
