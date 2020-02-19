@@ -1,0 +1,39 @@
+{
+    "name": "FairContactsNodejs",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "ISC",
+    "dependencies": {
+        "@sap/cds": "^3",
+        "@sap/hana-client": "^2.4.182",
+        "passport": "^0.4.1",
+        "express": "^4",
+        "hdb": "^0.17.1"
+    },
+    "scripts": {
+        "start": "npx cds run",
+        "build": "cds build/all --clean",
+        "build:cf": "mbt build -p=cf",
+        "build:xs-security": "cds compile srv/ --to xsuaa  > xs-security.json",
+        "generate-odata-client": "npx generate-odata-client --inputDir srv/service-specifications --outputDir srv/odata-client --forceOverwrite",
+        "deploy:cf": "cf deploy mta_archives/epmbp-consumer-app_0.0.1.mtar",
+        "debug:cf": "cf ssh epmbp-consumer-app-srv -N -T -L 9229:127.0.0.1:9229"
+    },
+    "devDependencies": {
+        "@sap/cloud-sdk-generator": "^1.17.0",
+        "sqlite3": "^4.1.1"
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "sqlite",
+                "model": [
+                    "db/",
+                    "srv/",
+                    "app/"
+                ]
+            }
+        }
+    }
+}
